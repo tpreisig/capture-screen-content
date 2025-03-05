@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capturing Screenshots</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+</head>
+
+<body>
+    <h1>Capture Screenshots</h1>
+    <p>The code is designed to capture the screen or a specific tab using the browser's <b>getDisplayMedia API</b>, display it in a video element, and then take a screenshot by drawing the video frame onto a canvas. We're using <b>captureScreen</b>, which is an async function that handles screen capturing:</p>
+    <ol>
+        <li>
+            navigator.mediaDevices.getDisplayMedia({ preferredCurrentTab: true }) requests permission to capture the screen or a specific tab. <br> It returns a MediaStream object representing the captured video stream.
+        </li>
+        <li>
+            A video element is created dynamically using document.createElement("video") to display the captured stream.
+        </li>
+        <li>
+            An event listener is added to the video element for the "loadedmetadata" event, which fires when the video's metadata (like width and height) is loaded. <br> Inside this listener, a canvas element and its 2D context (ctx) are created to draw the video frame.</li>
+        <li>
+            The canvas dimensions are set to match the video's width and height (video.videoWidth and video.videoHeight). <br> The video frame is drawn onto the canvas using ctx.drawImage(), and the canvas is appended to the document body.
+        </li>
+        <li>
+            video.srcObject = stream assigns the MediaStream (from getDisplayMedia) as the source for the video element.
+        </li>
+    </ol>
+   
+
+    <hr id="hr">
+
+    <button type="button" id="screenshot-btn">Capture Screenshots</button>
+ 
+</body>
+
+</html>
